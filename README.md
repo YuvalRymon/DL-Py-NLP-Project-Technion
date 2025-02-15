@@ -23,6 +23,7 @@ Final Project for DL in Python @ Technion
   - Remaining tokens for titles and text: **509 tokens**
   - **Titles**: max **40 tokens**
   - **Texts**: max **469 tokens**
+ 
  ![image](https://github.com/user-attachments/assets/1a5aa485-6062-4f7c-9a7e-52f3acaccd12)
 #### 3.1.2. Model Overview - BERT→ Feed Forward Neural Network
 - **Separate BERT embedding processing** (frozen parameters) for **titles and texts**
@@ -45,6 +46,7 @@ Final Project for DL in Python @ Technion
 - **Optimal Title Weight**: **0.28**
 ![image](https://github.com/user-attachments/assets/e5e34653-fc07-4357-8e1b-d3fdb09b2172)
 - **Confusion Matrix**: High accuracy (~90%+ per category)
+
  ![image](https://github.com/user-attachments/assets/704b3151-1170-4b4e-a663-330c7ec6b0b4)
  ![image](https://github.com/user-attachments/assets/2089a455-d5f3-4951-bbbb-152f75114b12)
 ### 3.2. Performing SHAP Analysis on Word Importance
@@ -76,6 +78,7 @@ Final Project for DL in Python @ Technion
   - "East", and “-”: probably refer to "Middle-East,".
   -  **Western titles prominently feature casualty figures, aiming to capture attention and convey the gravity of the situation, and emphasizing the human cost**
 <img width="886" alt="image" src="https://github.com/user-attachments/assets/a537682a-40b1-4d3f-a8f3-e66a9d6ba444" />
+
 ### 3.3. Task 1 Conclusions
 - **Israeli media**: Focused on internal affairs post-October 7th
 - **Arab & Western media**: Focused on Gaza, casualties, and international responses
@@ -83,7 +86,7 @@ Final Project for DL in Python @ Technion
 ## 4. Task 2: Fine-tuning for Headline Generation
  ![image](https://github.com/user-attachments/assets/e3002562-2fbc-4ffe-9489-0f440d564670)
 ### 4.1. Approach 1: Source Token Addition
-#### 4.1.1. **Mapped source categories to special tokens and created new column with tokens prepended to texts:**
+#### 4.1.1. **Mapped source categories to special tokens and created a new column with tokens prepended to texts:**
   - Israeli → `[SOURCE: ISRAELI NEWS]`
   - Arab → `[SOURCE: ARAB NEWS]`
   - Western → `[SOURCE: WESTERN NEWS]`
@@ -98,8 +101,10 @@ Final Project for DL in Python @ Technion
  - Better than TOP K/P sampling for maintaining coherence
  - Number of Beams: 4, standard choice to balance exploration vs computation
  ![image](https://github.com/user-attachments/assets/9b0b03fd-e42d-4563-80dc-4fbf7895127a)
-#### 4.1.4. 5 factual texts with narratives from both sides will be fed to generate headlines with each source token (3*5 = 15 headlines)
+
+#### 4.1.4. Five factual texts with narratives from both sides will be fed to generate headlines with each source token (3*5 = 15 headlines)
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/0b5b7305-dd2f-410e-91cf-f32c8ef35056" />
+
 #### 4.1.5. **Result**: Model failed to differentiate sources, generating similar headlines
 ### 4.2. Approach 2: Separate Source-based Models
 - **Trained 3 models**, each on its own category with separate data

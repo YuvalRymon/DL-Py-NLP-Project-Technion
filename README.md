@@ -1,5 +1,6 @@
 # DL-Py-NLP-Project-Technion
-Final Project for DL in Python @ Technion
+![News Classification   Headline Generation with Deep Learning - visual selection](https://github.com/user-attachments/assets/db721593-63e4-49e0-aea6-b1c6ee6c1d4b)
+
 # News Classification & Headline Generation with Deep Learning
 
 ## 1. Data

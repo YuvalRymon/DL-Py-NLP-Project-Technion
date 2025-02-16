@@ -96,6 +96,7 @@ Final Project for DL in Python @ Technion
  - Unified text-to-text format (encoder-decoder)
  - Fast training and inference (good performance for size)
  - Sufficient capacity (60M parameters, ~35K lexicon)
+
  ![image](https://github.com/user-attachments/assets/82f86acd-be88-4e8e-9f4e-09438d4549ac)
 #### 4.1.3. Beam Search as generative function
  - Better than TOP K/P sampling for maintaining coherence

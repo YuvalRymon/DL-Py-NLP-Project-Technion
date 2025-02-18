@@ -45,7 +45,6 @@ This project marked the end of an intensive 8-months period of learning at the T
 - Extremely long articles removed to optimize efficiency
  ![image](https://github.com/user-attachments/assets/3bc0b22d-ff0a-4a78-9653-5d689141cd42)
 ## 3. Task 1: Source Classification & Word Importance
-![image](https://github.com/user-attachments/assets/7567818a-c3e6-4b3d-a62b-955f0d7c1d20)
 ### 3.1. Classifying Articles as Israeli / Arab / Western with High Accuracy
 #### 3.1.1. Tokenization
 - Tokenization performed using **BERT Base** with a **512-token limit**
@@ -114,7 +113,6 @@ This project marked the end of an intensive 8-months period of learning at the T
 - **Arab & Western media**: Focused on Gaza, casualties, and international responses
 - **Short time-frame** may limit generalization of key words
 ## 4. Task 2: Fine-tuning for Headline Generation
- ![image](https://github.com/user-attachments/assets/e3002562-2fbc-4ffe-9489-0f440d564670)
 ### 4.1. Approach 1: Source Token Addition
 #### 4.1.1. **Mapped source categories to special tokens and created a new column with tokens prepended to texts:**
   - Israeli → `[SOURCE: ISRAELI NEWS]`

@@ -1,7 +1,36 @@
 # DL-Py-NLP-Project-Technion
-![News Classification   Headline Generation with Deep Learning - visual selection](https://github.com/user-attachments/assets/db721593-63e4-49e0-aea6-b1c6ee6c1d4b)
-
 # News Classification & Headline Generation with Deep Learning
+![image](https://github.com/user-attachments/assets/2b306c79-c8c5-407b-bac2-909f7f4dfdeb)
+
+## Overview
+Can AI spot bias in media coverage?
+
+Analyzing ~13K articles from Times of Israel, BBC, CNN, Al Jazeera, and WAFA published in Oct-Nov 2023, showed interesting patterns in how these outlets frame the Israel-Hamas war. 
+
+To classify articles by their source (Israeli, Arab, or Western), I trained a model using a FF neural network and BERT embeddings, which learned to weight titles at 28%, and achieved 90%+ accuracy on all classes. A SHAP analysis revealed the most influential words for classification:
+ 
+𝐈𝐬𝐫𝐚𝐞𝐥𝐢: "𝘯𝘰𝘮𝘪𝘯𝘢𝘵𝘪𝘰𝘯," "𝘒𝘯𝘦𝘴𝘴𝘦𝘵," "𝘷𝘰𝘵𝘦" (politics), "𝘏𝘢𝘮𝘢𝘴’𝘴," "𝘖𝘤𝘵𝘰𝘣𝘦𝘳," "𝘗𝘰𝘴𝘵" (October 7th aftermath), and "𝘥𝘢𝘮𝘢𝘨𝘦," "𝘳𝘦𝘵𝘶𝘳𝘯𝘴" (destruction and hostage deal).
+𝐀𝐫𝐚𝐛: "𝘵𝘦𝘳𝘳𝘰𝘳𝘪𝘴𝘵𝘴," "𝘵𝘦𝘳𝘳𝘪𝘵𝘰𝘳𝘺," "𝘮𝘦𝘥𝘪𝘤𝘢𝘭,", "13", "𝘴𝘵𝘢𝘵𝘦𝘮𝘦𝘯𝘵" (sovereignty and humanitarian themes), and "𝘓𝘰𝘯𝘥𝘰𝘯" (protest reference).
+𝐖𝐞𝐬𝐭𝐞𝐫𝐧: "𝘬𝘪𝘭𝘭𝘦𝘥," "2,","𝘤𝘩𝘪𝘭𝘥𝘳𝘦𝘯" (an emphasis on human cost), "𝘎𝘢𝘻𝘢", and "𝘏𝘢𝘨𝘢𝘳𝘪" (IDF updates).
+
+Israeli media was still processing October 7th's internal impact, while Arab and Western media had shifted focus to Gaza. 
+
+To see how outlets frame the war differently, I fine-tuned a T5 transformer model to generate headlines from articles, training 3 models (1 on each category) by comparing the generated headline with the real one. Feeding in new identical neutral texts reflected the editorial bias the models had learned. Here are 2 examples: 
+
+𝐈𝐬𝐫𝐚𝐞𝐥𝐢: "𝘐𝘴𝘳𝘢𝘦𝘭𝘪 𝘥𝘳𝘰𝘯𝘦 𝘴𝘵𝘳𝘪𝘬𝘦 𝘵𝘢𝘳𝘨𝘦𝘵𝘦𝘥 𝘞𝘰𝘳𝘭𝘥 𝘊𝘦𝘯𝘵𝘳𝘢𝘭 𝘒𝘪𝘵𝘤𝘩𝘦𝘯 𝘪𝘯 𝘎𝘢𝘻𝘢, 𝘬𝘪𝘭𝘭𝘪𝘯𝘨 7 𝘸𝘰𝘳𝘬𝘦𝘳𝘴."
+𝐀𝐫𝐚𝐛: "𝘚𝘦𝘷𝘦𝘯 𝘢𝘪𝘥 𝘸𝘰𝘳𝘬𝘦𝘳𝘴 𝘬𝘪𝘭𝘭𝘦𝘥 𝘪𝘯 𝘢𝘯 𝘐𝘴𝘳𝘢𝘦𝘭𝘪 𝘴𝘵𝘳𝘪𝘬𝘦 𝘰𝘯 𝘢 𝘤𝘰𝘯𝘷𝘰𝘺 𝘪𝘯 𝘎𝘢𝘻𝘢."
+𝐖𝐞𝐬𝐭𝐞𝐫𝐧: "𝘐𝘴𝘳𝘢𝘦𝘭𝘪 𝘥𝘳𝘰𝘯𝘦 𝘴𝘵𝘳𝘪𝘬𝘦 𝘵𝘢𝘳𝘨𝘦𝘵𝘦𝘥 𝘢𝘪𝘥 𝘤𝘰𝘯𝘷𝘰𝘺 𝘪𝘯 𝘎𝘢𝘻𝘢, 𝘬𝘪𝘭𝘭𝘪𝘯𝘨 𝘢𝘵 𝘭𝘦𝘢𝘴𝘵 𝘴𝘦𝘷𝘦𝘯 𝘸𝘰𝘳𝘬𝘦𝘳𝘴."
+
+The Arab model starts with casualties, while Western media adds "at least", although the text was clear.
+
+𝐈𝐬𝐫𝐚𝐞𝐥𝐢: "𝘐𝘋𝘍 𝘭𝘢𝘶𝘯𝘤𝘩𝘦𝘴 𝘮𝘪𝘭𝘪𝘵𝘢𝘳𝘺 𝘰𝘱𝘦𝘳𝘢𝘵𝘪𝘰𝘯 𝘪𝘯 𝘙𝘢𝘧𝘢𝘩 𝘵𝘰 𝘥𝘪𝘴𝘮𝘢𝘯𝘵𝘭𝘦 𝘏𝘢𝘮𝘢𝘴 𝘵𝘶𝘯𝘯𝘦𝘭 𝘯𝘦𝘵𝘸𝘰𝘳𝘬"
+𝐀𝐫𝐚𝐛: "𝘐𝘴𝘳𝘢𝘦𝘭𝘪 𝘧𝘰𝘳𝘤𝘦𝘴 𝘭𝘢𝘶𝘯𝘤𝘩 𝘮𝘪𝘭𝘪𝘵𝘢𝘳𝘺 𝘰𝘱𝘦𝘳𝘢𝘵𝘪𝘰𝘯 𝘢𝘨𝘢𝘪𝘯𝘴𝘵 𝘏𝘢𝘮𝘢𝘴 𝘪𝘯 𝘙𝘢𝘧𝘢𝘩"
+𝐀𝐫𝐚𝐛: "𝘐𝘴𝘳𝘢𝘦𝘭𝘪 𝘧𝘰𝘳𝘤𝘦𝘴 𝘭𝘢𝘶𝘯𝘤𝘩 𝘮𝘪𝘭𝘪𝘵𝘢𝘳𝘺 𝘰𝘱𝘦𝘳𝘢𝘵𝘪𝘰𝘯 𝘪𝘯 𝘙𝘢𝘧𝘢𝘩 𝘢𝘴 𝘱𝘢𝘳𝘵 𝘰𝘧 𝘰𝘯𝘨𝘰𝘪𝘯𝘨 𝘤𝘢𝘮𝘱𝘢𝘪𝘨𝘯 𝘢𝘨𝘢𝘪𝘯𝘴𝘵 𝘏𝘢𝘮𝘢𝘴"
+
+Only the Israeli model highlights military goals. 
+
+This project marked the end of an intensive 8-months period of learning at the Technion's Data Science program, where I gained theoretical and practical experience in design, implementation and evaluation of ML & DL models in Python and R. 
+![News Classification   Headline Generation with Deep Learning - visual selection](https://github.com/user-attachments/assets/db721593-63e4-49e0-aea6-b1c6ee6c1d4b)
 
 ## 1. Data
 - News articles covering the Israel-Hamas war from October-November 2023 from 5 providers: Times of Israel, BBC, CNN, Al Jazeera, and WAFA
